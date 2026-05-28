@@ -1,12 +1,24 @@
-ARG BUILD_FROM
+# https://developers.home-assistant.io/docs/add-ons/configuration#add-on-dockerfile
 FROM ghcr.io/lukegus/termix:latest
 
+# Switch to root user to create directories and setup symlinks
 USER root
 
-RUN apk add --no-cache jq 2>/dev/null || \
-    (apt-get update && apt-get install -y --no-install-recommends jq && apt-get clean && rm -rf /var/lib/apt/lists/*)
+# Ensure required directories exist with proper permissions
+# Create /data with write permissions for all users since we don't know the UID
+RUN mkdir -p /app /data && chmod 1777 /data
 
-COPY run.sh /run.sh
-RUN chmod a+x /run.sh
+# Remove the default /app/data directory if it exists
+RUN rm -rf /app/data
 
-ENTRYPOINT ["/run.sh"]
+# Create a symlink from /app/data to /data
+# This ensures Termix stores data in Home Assistant's backed-up location
+RUN ln -sf /data /app/data
+
+# Set environment variable for port
+ENV PORT=8080
+
+# Expose the port
+EXPOSE 8080
+
+# The base image should already have the CMD/ENTRYPOINT configured
