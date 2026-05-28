@@ -1,0 +1,7 @@
+configuration:
+  salt:
+    name: Salt
+    description: >
+      A random secret string used to encrypt stored credentials and session data.
+      Generate one at https://www.lastpass.com/features/password-generator
+      (max 32 characters). Required — Termix will not start without this set.

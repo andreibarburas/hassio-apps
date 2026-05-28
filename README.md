@@ -23,6 +23,13 @@ Add this repository to your Home Assistant instance:
 
 A modern self-hosted music player for Navidrome, Jellyfin, and Subsonic-compatible servers.
 
+### [Termix](termix/)
+
+[![Supports amd64 Architecture](https://img.shields.io/badge/amd64-yes-green.svg)](termix/)
+[![Supports aarch64 Architecture](https://img.shields.io/badge/aarch64-yes-green.svg)](termix/)
+
+A self-hosted web-based server management platform with SSH terminal, tunneling, and file editing.
+
 ## License
 
 MIT
