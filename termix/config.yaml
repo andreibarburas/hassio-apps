@@ -23,5 +23,11 @@ ports_description:
 panel_icon: mdi:console
 panel_title: Termix
 
-environment:
-  PORT: "8080"
+map:
+  - data:rw
+
+options:
+  salt: ''
+
+schema:
+  salt: str
