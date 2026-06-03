@@ -1,0 +1,61 @@
+---
+name: Solidtime
+version: '0.4.0'
+slug: solidtime
+description: >-
+  A modern open-source time tracker for freelancers and agencies. Includes
+  integrated PostgreSQL database, scheduler, and worker.
+url: 'https://github.com/andreibarburas/hassio-apps'
+build_from:
+  amd64: 'solidtime/solidtime:latest'
+  aarch64: 'solidtime/solidtime:latest'
+arch:
+  - amd64
+  - aarch64
+init: false
+startup: application
+boot: auto
+ports:
+  8000/tcp: 8000
+ports_description:
+  8000/tcp: Solidtime web UI
+map:
+  - data:rw
+options:
+  app_url: 'http://homeassistant.local:8000'
+  app_key: ''
+  passport_private_key: ''
+  passport_public_key: ''
+  db_password: 'solidtime'
+  db_database: 'solidtime'
+  db_username: 'solidtime'
+  super_admins: ''
+  app_enable_registration: true
+  mail_mailer: 'log'
+  mail_host: ''
+  mail_port: 587
+  mail_username: ''
+  mail_password: ''
+  mail_from_address: 'solidtime@example.com'
+  mail_from_name: 'Solidtime'
+  auto_db_migrate: true
+schema:
+  app_url: 'str'
+  app_key: 'str'
+  passport_private_key: 'str'
+  passport_public_key: 'str'
+  db_password: 'str'
+  db_database: 'str'
+  db_username: 'str'
+  super_admins: 'str'
+  app_enable_registration: 'bool'
+  mail_mailer: 'list(log|smtp|sendmail)'
+  mail_host: 'str'
+  mail_port: 'int'
+  mail_username: 'str'
+  mail_password: 'str'
+  mail_from_address: 'str'
+  mail_from_name: 'str'
+  auto_db_migrate: 'bool'
+image: 'solidtime/solidtime:{arch}'
+panel_icon: mdi:timer-outline

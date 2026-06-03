@@ -1,4 +1,4 @@
-# andrei BARBURAS Home Assistant Apps
+# andrei BARBURAS Home Assistant Add-ons
 
 A collection of Home Assistant add-ons maintained by andrei BARBURAS.
 
@@ -30,6 +30,9 @@ A modern self-hosted music player for Navidrome, Jellyfin, and Subsonic-compatib
 
 A self-hosted web-based server management platform with SSH terminal, tunneling, and file editing.
 
-## License
+### [Solidtime](solidtime/)
 
-MIT
+[![Supports amd64 Architecture](https://img.shields.io/badge/amd64-yes-green.svg)](solidtime/)
+[![Supports aarch64 Architecture](https://img.shields.io/badge/aarch64-yes-green.svg)](solidtime/)
+
+A modern open-source time tracker for freelancers and agencies. Includes integrated PostgreSQL database, scheduler, and queue worker.
