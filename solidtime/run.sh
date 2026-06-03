@@ -120,6 +120,42 @@ until gosu postgres psql -c "select 1" > /dev/null 2>&1; do
 done
 log "PostgreSQL is ready."
 
+log "Writing .env file for FrankenPHP/Octane..."
+cat > /var/www/html/.env << ENVEOF
+APP_NAME=Solidtime
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=${APP_URL}
+APP_FORCE_HTTPS=false
+APP_ENABLE_REGISTRATION=${APP_ENABLE_REGISTRATION}
+TRUSTED_PROXIES=0.0.0.0/0,2000:0:0:0:0:0:0:0/3
+SUPER_ADMINS=${SUPER_ADMINS}
+APP_KEY=${APP_KEY}
+LOG_CHANNEL=stderr_daily
+LOG_LEVEL=info
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=${DB_DATABASE}
+DB_USERNAME=${DB_USERNAME}
+DB_PASSWORD=${DB_PASSWORD}
+DB_SSLMODE=disable
+QUEUE_CONNECTION=database
+FILESYSTEM_DISK=local
+PUBLIC_FILESYSTEM_DISK=public
+MAIL_MAILER=${MAIL_MAILER}
+MAIL_HOST=${MAIL_HOST}
+MAIL_PORT=${MAIL_PORT}
+MAIL_USERNAME=${MAIL_USERNAME}
+MAIL_PASSWORD=${MAIL_PASSWORD}
+MAIL_FROM_ADDRESS=${MAIL_FROM_ADDRESS}
+MAIL_FROM_NAME="${MAIL_FROM_NAME}"
+OCTANE_SERVER=frankenphp
+WORKER_COMMAND=php /var/www/html/artisan queue:work --sleep=3 --tries=3 --max-time=3600
+ENVEOF
+printf 'PASSPORT_PRIVATE_KEY="%s"\n' "${PASSPORT_PRIVATE_KEY}" >> /var/www/html/.env
+printf 'PASSPORT_PUBLIC_KEY="%s"\n' "${PASSPORT_PUBLIC_KEY}" >> /var/www/html/.env
+
 log "Starting Solidtime via start-container (http mode)..."
 export CONTAINER_MODE="http"
 exec /var/www/html/docker/prod/deployment/start-container
