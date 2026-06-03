@@ -16,13 +16,13 @@ init: false
 startup: application
 boot: auto
 ports:
-  8000/tcp: 8000
+  8000/tcp: 2359
 ports_description:
   8000/tcp: Solidtime web UI
 map:
   - data:rw
 options:
-  app_url: 'http://homeassistant.local:8000'
+  app_url: 'http://homeassistant.local:2359'
   app_key: ''
   passport_private_key: ''
   passport_public_key: ''
@@ -57,5 +57,4 @@ schema:
   mail_from_address: 'str'
   mail_from_name: 'str'
   auto_db_migrate: 'bool'
-image: 'solidtime/solidtime:{arch}'
 panel_icon: mdi:timer-outline
