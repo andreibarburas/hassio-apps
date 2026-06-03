@@ -101,7 +101,7 @@ export AUTO_DB_MIGRATE="${AUTO_DB_MIGRATE}"
 export WORKER_COMMAND="php /var/www/html/artisan queue:work --sleep=3 --tries=3 --max-time=3600"
 
 # ── Persistent storage ────────────────────────────────────────────────────────
-mkdir -p /data/storage/app /data/storage/logs /data/storage/framework/{cache,sessions,views}
+mkdir -p /data/storage/app/public /data/storage/logs /data/storage/framework/cache/data /data/storage/framework/sessions /data/storage/framework/views /data/storage/framework/testing
 chown -R 1000:1000 /data/storage
 
 if [ ! -L /var/www/html/storage ]; then
