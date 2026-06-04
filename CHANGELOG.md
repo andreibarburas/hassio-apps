@@ -17,6 +17,10 @@ All notable changes to this addon repository are documented here.
 
 ## Solidtime
 
+## 0.14.0-1
+
+- Fixed WORKER_COMMAND quoting in .env file causing startup failure
+
 ### 0.14.0
 
 - Fixed CHANGELOG.md
