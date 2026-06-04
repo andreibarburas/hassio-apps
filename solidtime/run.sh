@@ -151,7 +151,7 @@ MAIL_PASSWORD=${MAIL_PASSWORD}
 MAIL_FROM_ADDRESS=${MAIL_FROM_ADDRESS}
 MAIL_FROM_NAME="${MAIL_FROM_NAME}"
 OCTANE_SERVER=frankenphp
-WORKER_COMMAND=php /var/www/html/artisan queue:work --sleep=3 --tries=3 --max-time=3600
+WORKER_COMMAND="php /var/www/html/artisan queue:work --sleep=3 --tries=3 --max-time=3600"
 ENVEOF
 printf 'PASSPORT_PRIVATE_KEY="%s"\n' "${PASSPORT_PRIVATE_KEY}" >> /var/www/html/.env
 printf 'PASSPORT_PUBLIC_KEY="%s"\n' "${PASSPORT_PUBLIC_KEY}" >> /var/www/html/.env
