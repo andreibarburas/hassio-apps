@@ -4,6 +4,9 @@
 
 ## Termix
 
+### [2.3.2] - 2026-06-05
+- Bumped to Termix 2.3.2
+
 ### [2.3.1] - 2026-06-04
 - Added 'map: data:rw' to persist data across updates and reinstalls
 - Symlink '/app/data → /data' in 'run.sh' to use HA persistent storage
