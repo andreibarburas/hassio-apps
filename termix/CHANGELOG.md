@@ -4,6 +4,9 @@
 
 ## Termix
 
+### [2.3.2-1] - 2026-06-05
+- Fixed data persistence after update (hopefully)
+
 ### [2.3.2] - 2026-06-05
 - Bumped to Termix 2.3.2
 

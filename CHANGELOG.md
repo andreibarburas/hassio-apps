@@ -37,14 +37,13 @@ All notable changes to this addon repository are documented here.
 
 ## Termix
 
+### [2.3.2-1] - 2026-06-05
+- Fixed data persistence after update (hopefully)
+
+### [2.3.2] - 2026-06-05
+- Bumped to Termix 2.3.2
+
 ### 2.3.1
 - Added 'map: data:rw' to persist data across updates and reinstalls
 - Symlink '/app/data → /data' in 'run.sh' to use HA persistent storage
 - Bumped to Termix 2.3.1
-
-### 2.2.1
-- Initial release as a Home Assistant addon
-- Based on 'ghcr.io/lukegus/termix:latest'
-- Entry point resolved to '/app/dist/backend/backend/starter.js'
-- 'SALT' and 'PORT' injected via 'run.sh' from HA addon options
-- HA ingress support on port 8080
