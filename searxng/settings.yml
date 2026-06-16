@@ -1,0 +1,65 @@
+# SearXNG settings — hardened for private use
+# Uses use_default_settings: true so only overrides are needed.
+# The secret_key is auto-generated at first run by run.sh.
+
+use_default_settings: true
+
+general:
+  debug: false
+  instance_name: "SearXNG"
+  # Do NOT enable public_instance — keeps public-facing features off
+  public_instance: false
+
+server:
+  # secret_key is injected by run.sh at startup (generated with openssl)
+  secret_key: "REPLACEME"
+  bind_address: "0.0.0.0"
+  port: 9090
+  # Proxy all images through SearXNG so your browser never contacts search CDNs
+  image_proxy: true
+  # POST is more private — queries don't appear in server logs or browser history
+  method: "POST"
+  # Harden HTTP headers
+  default_http_headers:
+    X-Content-Type-Options: nosniff
+    X-Download-Options: noopen
+    X-Robots-Tag: noindex, nofollow
+    Referrer-Policy: no-referrer
+    X-Frame-Options: DENY
+
+search:
+  # No autocomplete = no keystrokes sent to third parties
+  autocomplete: ""
+  safe_search: 0
+  default_lang: "all"
+  formats:
+    - html
+    - json
+
+ui:
+  # Don't show instance info publicly
+  query_in_title: false
+  # Infinite scroll off — fewer background requests
+  infinite_scroll: false
+  center_alignment: false
+  default_theme: simple
+  theme_args:
+    simple_style: auto
+
+outgoing:
+  request_timeout: 3.0
+  max_request_timeout: 10.0
+  # Empty useragent_suffix — don't advertise your instance
+  useragent_suffix: ""
+  pool_connections: 100
+  pool_maxsize: 10
+  enable_http2: true
+  # Randomise source IP if multiple interfaces exist (safe to leave as-is for single-NIC)
+  # source_ips:
+  #   - 0.0.0.0
+  #
+  # To route via a SOCKS5/HTTP proxy (e.g. VPN container) in future:
+  # proxies:
+  #   all://:
+  #     - socks5h://vpn-container:1080
+  # extra_proxy_timeout: 10.0
