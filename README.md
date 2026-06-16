@@ -23,12 +23,12 @@ Add this repository to your Home Assistant instance:
 
 A modern self-hosted music player for Navidrome, Jellyfin, and Subsonic-compatible servers.
 
-### [Termix](termix/)
+### [SearXNG](searxng/)
 
-[![Supports amd64 Architecture](https://img.shields.io/badge/amd64-yes-green.svg)](termix/)
-[![Supports aarch64 Architecture](https://img.shields.io/badge/aarch64-yes-green.svg)](termix/)
+[![Supports amd64 Architecture](https://img.shields.io/badge/amd64-yes-green.svg)](searxng/)
+[![Supports aarch64 Architecture](https://img.shields.io/badge/aarch64-yes-green.svg)](searxng/)
 
-A self-hosted web-based server management platform with SSH terminal, tunneling, and file editing.
+A privacy-respecting, self-hosted metasearch engine. Routes all search queries through your Home Assistant server, hiding your IP from search engines.
 
 ### [Solidtime](solidtime/)
 
@@ -36,3 +36,18 @@ A self-hosted web-based server management platform with SSH terminal, tunneling,
 [![Supports aarch64 Architecture](https://img.shields.io/badge/aarch64-yes-green.svg)](solidtime/)
 
 A modern open-source time tracker for freelancers and agencies. Includes integrated PostgreSQL database, scheduler, and queue worker.
+
+### [Termix](termix/)
+
+[![Supports amd64 Architecture](https://img.shields.io/badge/amd64-yes-green.svg)](termix/)
+[![Supports aarch64 Architecture](https://img.shields.io/badge/aarch64-yes-green.svg)](termix/)
+
+A self-hosted web-based server management platform with SSH terminal, tunneling, and file editing.
+
+---
+
+## Support
+
+If you find these add-ons useful, consider supporting their development:
+
+[![Donate](https://img.shields.io/badge/Donate-bunq.me-orange.svg)](https://bunq.me/barburasdonations)

@@ -15,14 +15,27 @@ All notable changes to this addon repository are documented here.
 
 ---
 
+## SearXNG
+
+### 2026.6.15-2
+- Fixed entrypoint to use SearXNG's venv granian directly
+- Embedded settings and run script into Dockerfile (no rootfs needed)
+
+### 2026.6.15-1
+- Initial release of the SearXNG Home Assistant addon
+- Wraps SearXNG latest (Granian/ASGI server) on port 6789
+- Hardened settings: image proxy, POST method, no autocomplete, no public instance
+- Auto-generated secret key on first run
+- Persistent settings and cache in /data
+
+---
+
 ## Solidtime
 
-## 0.14.0-1
-
+### 0.14.0-1
 - Fixed WORKER_COMMAND quoting in .env file causing startup failure
 
 ### 0.14.0
-
 - Fixed CHANGELOG.md
 - Initial release of the Solidtime Home Assistant addon
 - Bundled PostgreSQL 15 database (no external database required)
