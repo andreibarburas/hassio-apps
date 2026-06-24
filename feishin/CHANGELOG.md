@@ -4,7 +4,10 @@
 
 ## Feishin
 
-### [1.8.0] - 2025-05-25
+### [1.13.0] - 2026-06-24
+- Initial release as a Home Assistant addon
+
+### [1.8.0] - 2026-05-25
 - Initial release as a Home Assistant addon
 - Based on 'ghcr.io/jeffvli/feishin:latest'
 - Supports Navidrome, Jellyfin, and Subsonic-compatible servers
