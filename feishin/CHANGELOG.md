@@ -5,7 +5,7 @@
 ## Feishin
 
 ### [1.13.0] - 2026-06-24
-- Initial release as a Home Assistant addon
+- Bumped to 1.13.0
 
 ### [1.8.0] - 2026-05-25
 - Initial release as a Home Assistant addon
