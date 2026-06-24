@@ -1,7 +1,7 @@
 # Changelog
 
 ### [0.15.0] - 2026-06-24
-- Bumped to Termix 2.4.1
+- Bumped to Solidtime 0.15.0
 
 ### [0.14.0-1]
 
