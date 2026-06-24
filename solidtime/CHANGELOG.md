@@ -1,10 +1,13 @@
 # Changelog
 
-## 0.14.0-1
+### [0.15.0] - 2026-06-24
+- Bumped to Termix 2.4.1
+
+### [0.14.0-1]
 
 - Fixed WORKER_COMMAND quoting in .env file causing startup failure
 
-## 0.14.0
+### [0.14.0]
 
 - Fixed CHANGELOG.md
 - Initial release of the Solidtime Home Assistant addon
