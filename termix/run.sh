@@ -8,15 +8,10 @@ if [ -f "${OPTIONS_FILE}" ]; then
     [ -n "${SALT}" ] && export SALT
 fi
 
-export PORT=8080
+export PORT=9513
+export DATA_DIR=/data
 
-# Copy any existing /app/data contents to /data before wiping it
-if [ -d /app/data ] && [ ! -L /app/data ]; then
-    cp -a /app/data/. /data/ 2>/dev/null || true
-fi
+# Fix permissions so the node user can write to HA's persistent /data volume
+chmod 1777 /data
 
-# Force symlink /app/data -> /data (HA persistent storage)
-rm -rf /app/data
-ln -sf /data /app/data
-
-exec node /app/dist/backend/backend/starter.js
+exec /entrypoint.sh

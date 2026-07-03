@@ -1,6 +1,6 @@
 ---
 name: Termix
-version: '2.4.1'
+version: '2.5.0'
 slug: termix
 description: A self-hosted web-based server management platform with SSH terminal, tunneling, and file editing.
 url: 'https://github.com/LukeGus/Termix'
@@ -13,12 +13,12 @@ init: false
 apparmor: true
 
 ingress: true
-ingress_port: 8080
+ingress_port: 9513
 
 ports:
-  8080/tcp: 8080
+  9513/tcp: 9513
 ports_description:
-  8080/tcp: Web interface
+  9513/tcp: Web interface
 
 panel_icon: mdi:console
 panel_title: Termix

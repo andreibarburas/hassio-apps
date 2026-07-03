@@ -50,6 +50,13 @@ All notable changes to this addon repository are documented here.
 
 ## Termix
 
+### [2.5.0] - 2026-07-03
+- Fixed data persistence across restarts and updates
+- Root cause: upstream image declares '/app/data' as a Docker VOLUME, preventing HA bind mounts
+- Solution: set 'DATA_DIR=/data' so Termix writes directly to HA's persistent volume
+- Fixed permissions on '/data' so the node user can write to it
+- Changed port to 9513
+
 ### [2.3.2-1] - 2026-06-05
 - Fixed data persistence after update (hopefully)
 
