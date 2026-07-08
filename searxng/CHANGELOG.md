@@ -1,3 +1,6 @@
+## 2026.7.7
+- Bumped SearXNG to 2026.7.7
+
 ## 2026.6.15-2
 
 - Fixed entrypoint to use SearXNG's venv granian directly
