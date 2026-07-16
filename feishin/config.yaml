@@ -1,6 +1,6 @@
 ---
 name: Feishin
-version: '1.13.0'
+version: '1.14.0'
 slug: feishin
 description: A modern self-hosted music player for Navidrome, Jellyfin, and Subsonic.
 url: 'https://github.com/jeffvli/feishin'
