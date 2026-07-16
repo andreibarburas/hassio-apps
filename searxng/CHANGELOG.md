@@ -1,3 +1,6 @@
+## 2026.7.15
+- Bumped SearXNG to 2026.7.15
+
 ## 2026.7.7
 - Bumped SearXNG to 2026.7.7
 
