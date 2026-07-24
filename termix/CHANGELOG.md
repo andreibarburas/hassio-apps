@@ -4,6 +4,9 @@
 
 ## Termix
 
+### [2.5.1] - 2026-07-24
+- Bumped to Termix 2.5.1
+
 ### [2.5.0] - 2026-07-03
 - Fixed data persistence across restarts and updates
 - Root cause: upstream image declares '/app/data' as a Docker VOLUME, preventing HA bind mounts
