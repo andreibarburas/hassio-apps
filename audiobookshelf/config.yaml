@@ -1,0 +1,22 @@
+name: Audiobookshelf
+version: "2.35.1"
+slug: audiobookshelf
+description: Self-hosted audiobook and podcast server
+url: "https://github.com/andreibarburas/hassio-apps/tree/main/audiobookshelf"
+arch:
+  - amd64
+  - aarch64
+init: false
+startup: application
+boot: auto
+ports:
+  9988/tcp: 9988
+ports_description:
+  9988/tcp: Web UI
+map:
+  - media:rw
+webui: "http://[HOST]:[PORT:9988]/"
+options:
+  TZ: Etc/UTC
+schema:
+  TZ: str
