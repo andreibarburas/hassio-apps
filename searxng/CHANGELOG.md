@@ -1,3 +1,6 @@
+## 2026.7.22
+- Bumped SearXNG to 2026.7.22
+
 ## 2026.7.15
 - Bumped SearXNG to 2026.7.15
 
