@@ -16,6 +16,13 @@ Add this repository to your Home Assistant instance:
 
 ## Add-ons
 
+### [Audiobookshelf](audiobookshelf/)
+
+[![Supports amd64 Architecture](https://img.shields.io/badge/amd64-yes-green.svg)](audiobookshelf/)
+[![Supports aarch64 Architecture](https://img.shields.io/badge/aarch64-yes-green.svg)](audiobookshelf/)
+
+Self-hosted audiobook and podcast server.
+
 ### [Feishin](feishin/)
 
 [![Supports amd64 Architecture](https://img.shields.io/badge/amd64-yes-green.svg)](feishin/)
