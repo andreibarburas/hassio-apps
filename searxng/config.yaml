@@ -1,6 +1,6 @@
 name: SearXNG
 description: Privacy-respecting, self-hosted metasearch engine. Routes all search queries through your Home Assistant server, hiding your IP from search engines.
-version: "2026.7.22"
+version: "2026.8.10"
 slug: searxng
 init: false
 homeassistant_api: false
