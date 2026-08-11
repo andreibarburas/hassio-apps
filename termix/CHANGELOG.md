@@ -4,6 +4,9 @@
 
 ## Termix
 
+### [2.6.1] - 2026-08-11
+- Bumped to Termix 2.6.1
+
 ### [2.5.1] - 2026-07-24
 - Bumped to Termix 2.5.1
 
