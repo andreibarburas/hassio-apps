@@ -39,6 +39,7 @@ options:
   mail_from_address: 'solidtime@example.com'
   mail_from_name: 'Solidtime'
   auto_db_migrate: true
+  trusted_hosts: ''
 schema:
   app_url: 'str'
   app_key: 'str'
@@ -57,4 +58,5 @@ schema:
   mail_from_address: 'str'
   mail_from_name: 'str'
   auto_db_migrate: 'bool'
+  trusted_hosts: 'str'
 panel_icon: mdi:timer-outline

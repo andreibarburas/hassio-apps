@@ -64,3 +64,10 @@ configuration:
     description: >-
       Run database migrations automatically on startup. Recommended to leave on.
       Safe to run repeatedly.
+  trusted_hosts:
+    name: Trusted Hosts
+    description: >-
+      Comma-separated list of additional hostnames that Solidtime should accept
+      requests from (added in Solidtime 0.19.0). Leave empty if you only access
+      Solidtime via the APP_URL hostname. Supports wildcards e.g. *.example.com.
+      Example: solidtime.local,solidtime.tailnet-name.ts.net

@@ -2,6 +2,9 @@
 
 ### [0.19.1] - 2026-08-11
 - Bumped to Solidtime 0.19.1
+- Added 'TRUSTED_HOSTS' configuration option (introduced in Solidtime 0.19.0)
+  Solidtime now only accepts requests for the hostname configured in 'APP_URL'.
+  Use this field to allow additional hostnames if needed.
 
 ### [0.17.0] - 2026-07-24
 - Bumped to Solidtime 0.17.0

@@ -24,6 +24,7 @@ MAIL_PASSWORD=$(jq -r '.mail_password' "${CONFIG_PATH}")
 MAIL_FROM_ADDRESS=$(jq -r '.mail_from_address' "${CONFIG_PATH}")
 MAIL_FROM_NAME=$(jq -r '.mail_from_name' "${CONFIG_PATH}")
 AUTO_DB_MIGRATE=$(jq -r '.auto_db_migrate' "${CONFIG_PATH}")
+TRUSTED_HOSTS=$(jq -r '.trusted_hosts' "${CONFIG_PATH}")
 
 # ── PostgreSQL setup ──────────────────────────────────────────────────────────
 PGDATA=/data/postgresql
@@ -129,6 +130,7 @@ APP_URL=${APP_URL}
 APP_FORCE_HTTPS=false
 APP_ENABLE_REGISTRATION=${APP_ENABLE_REGISTRATION}
 TRUSTED_PROXIES=0.0.0.0/0,2000:0:0:0:0:0:0:0/3
+TRUSTED_HOSTS=${TRUSTED_HOSTS}
 SUPER_ADMINS=${SUPER_ADMINS}
 APP_KEY=${APP_KEY}
 LOG_CHANNEL=stderr_daily
