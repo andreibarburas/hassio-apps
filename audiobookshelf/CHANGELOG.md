@@ -4,6 +4,9 @@
 
 ## Audiobookshelf
 
+### [2.36.0] - 2026-08-11
+- Initial release as a Home Assistant addon
+
 ### [2.35.1] - 2026-07-24
 - Initial release as a Home Assistant addon
 - Based on 'ghcr.io/advplyr/audiobookshelf:2.35.1'
