@@ -1,5 +1,8 @@
 # Changelog
 
+### [0.19.1] - 2026-08-11
+- Bumped to Solidtime 0.19.1
+
 ### [0.17.0] - 2026-07-24
 - Bumped to Solidtime 0.17.0
 
