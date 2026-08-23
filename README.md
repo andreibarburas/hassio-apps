@@ -37,19 +37,19 @@ A modern self-hosted music player for Navidrome, Jellyfin, and Subsonic-compatib
 
 A highly customizable homepage (or startpage / application dashboard)
 
-### [Homepage](homepage/)
-
-[![Supports amd64 Architecture](https://img.shields.io/badge/amd64-yes-green.svg)](homepage/)
-[![Supports aarch64 Architecture](https://img.shields.io/badge/aarch64-yes-green.svg)](homepage/)
-
-A highly customizable homepage (or startpage / application dashboard)
-
 ### [Musicload](musicload/)
+
+[![Supports amd64 Architecture](https://img.shields.io/badge/amd64-yes-green.svg)](musicload/)
+[![Supports aarch64 Architecture](https://img.shields.io/badge/aarch64-yes-green.svg)](musicload/)
+
+Musicload is a mobile-first, self-hosted Navidrome companion for searching, previewing, downloading and organizing music with ListenBrainz automation.
+
+### [SearXNG](searxng/)
 
 [![Supports amd64 Architecture](https://img.shields.io/badge/amd64-yes-green.svg)](searxng/)
 [![Supports aarch64 Architecture](https://img.shields.io/badge/aarch64-yes-green.svg)](searxng/)
 
-Musicload is a mobile-first, self-hosted Navidrome companion for searching, previewing, downloading and organizing music with ListenBrainz automation.
+A privacy-respecting, self-hosted metasearch engine. Routes all search queries through your Home Assistant server, hiding your IP from search engines.
 
 ### [Solidtime](solidtime/)
 
