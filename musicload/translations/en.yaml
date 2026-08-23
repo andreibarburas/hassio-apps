@@ -1,0 +1,7 @@
+configuration:
+  music_library_path:
+    name: Music library path
+    description: >-
+      Subfolder under Home Assistant's Media share that holds your music
+      library (the same one Navidrome reads from). Enter the folder name
+      only, not a full path.
