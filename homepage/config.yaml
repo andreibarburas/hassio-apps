@@ -1,0 +1,27 @@
+---
+name: Homepage
+version: "2.1.2"
+slug: homepage
+description: A highly customizable startpage / application dashboard (gethomepage.dev)
+url: "https://github.com/andreibarburas/hassio-apps"
+arch:
+  - amd64
+  - aarch64
+startup: application
+boot: auto
+init: true
+ports:
+  3000/tcp: 7575
+ports_description:
+  3000/tcp: Web UI
+webui: "http://[HOST]:[PORT:3000]/"
+map:
+  - addon_config:rw
+options:
+  allowed_hosts: ""
+  puid: 0
+  pgid: 0
+schema:
+  allowed_hosts: str
+  puid: int
+  pgid: int

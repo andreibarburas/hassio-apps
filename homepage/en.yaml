@@ -1,0 +1,17 @@
+configuration:
+  allowed_hosts:
+    name: Allowed Hosts
+    description: >-
+      Required. The host:port (or domain) used to reach this addon, e.g.
+      10.10.30.234:7575. Comma-separate multiple values. Homepage will
+      refuse requests whose Host header doesn't match this.
+  puid:
+    name: PUID
+    description: >-
+      Optional user ID to run Homepage as. Defaults to 0 (root), matching
+      upstream's default behavior.
+  pgid:
+    name: PGID
+    description: >-
+      Optional group ID to run Homepage as. Defaults to 0 (root), matching
+      upstream's default behavior.
