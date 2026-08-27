@@ -58,6 +58,13 @@ A privacy-respecting, self-hosted metasearch engine. Routes all search queries t
 
 A modern open-source time tracker for freelancers and agencies. Includes integrated PostgreSQL database, scheduler, and queue worker.
 
+### [Subwave](subwave/)
+
+[![Supports amd64 Architecture](https://img.shields.io/badge/amd64-yes-green.svg)](subwave/)
+[![Supports aarch64 Architecture](https://img.shields.io/badge/aarch64-yes-green.svg)](subwave/)
+
+A personal internet radio station. One Icecast stream, one broadcast. Every listener hears the same thing at the same time. An AI DJ picks the tracks and talks between them: station idents, time checks, the weather, a quick intro for whatever's going out next. You can ask for music in plain language; the DJ works out what you meant and slots it in.
+
 ### [Termix](termix/)
 
 [![Supports amd64 Architecture](https://img.shields.io/badge/amd64-yes-green.svg)](termix/)
