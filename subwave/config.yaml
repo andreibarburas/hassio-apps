@@ -1,0 +1,35 @@
+---
+name: Subwave
+version: "1.11.0"
+slug: subwave
+description: >-
+  Self-hosted AI internet radio station. Connects to your Navidrome library
+  and an LLM provider to run a real DJ-narrated station: Icecast + Liquidsoap
+  for broadcast, a Node controller as the DJ brain, and a Next.js listener UI,
+  all bundled into one container.
+url: "https://github.com/andreibarburas/hassio-apps"
+build_from:
+  amd64: "ghcr.io/perminder-klair/subwave-aio:1.11.0"
+arch:
+  - amd64
+init: false
+startup: application
+boot: auto
+hassio_api: false
+ports:
+  80/tcp: 7700
+ports_description:
+  80/tcp: Subwave web UI + audio stream (also serves /api and /stream.mp3 on the same origin)
+map:
+  - data:rw
+options:
+  admin_user: "admin"
+  admin_pass: ""
+  site_url: "http://homeassistant.local:7700"
+  tz: "Europe/London"
+schema:
+  admin_user: "str"
+  admin_pass: "password"
+  site_url: "str"
+  tz: "str"
+panel_icon: mdi:radio-tower

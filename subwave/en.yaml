@@ -1,0 +1,21 @@
+configuration:
+  admin_user:
+    name: Admin user
+    description: >-
+      Username for the admin gate (/admin + the first-run setup wizard).
+  admin_pass:
+    name: Admin pass
+    description: >-
+      Password for the admin gate. Required — the controller refuses to
+      start without one. Generate a strong one, e.g. openssl rand -hex 16.
+  site_url:
+    name: Site URL
+    description: >-
+      Public address of your station (e.g. http://homeassistant.local:7700
+      or https://radio.example.com behind your own reverse proxy). Backs
+      share cards, absolute links, and OG tags.
+  tz:
+    name: Timezone
+    description: >-
+      Timezone for the container, e.g. Europe/Amsterdam. Keeps hourly
+      archive filenames and the DJ's schedule slots on local time.
