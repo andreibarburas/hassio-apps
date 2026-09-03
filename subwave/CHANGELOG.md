@@ -1,8 +1,10 @@
 # Changelog
 
+For the Subwave changelog, go to: https://github.com/perminder-klair/subwave/releases
+
 ---
 
-## Subwave
+## Subwave Home Assistant app changelog
 
 ### [1.11.0] - 2026-08-27
 - Initial release as a Home Assistant addon

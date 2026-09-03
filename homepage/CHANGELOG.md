@@ -1,5 +1,14 @@
 # Changelog
 
+For the Homepage changelog, go to: https://github.com/gethomepage/homepage/releases
+
+---
+
+## Homepage Home Assistant app changelog
+
+### [2.2.0] - 2026-09-03
+- Bumped to Homepage 2.2.0
+
 ## 2.1.2
 - Config now uses the 'addon_config' map, mounting at '/config' inside the
   container. This exposes the config folder at '/addon_configs/<slug>/' on

@@ -1,5 +1,11 @@
 # Changelog
 
+For the Musicload changelog, go to: https://github.com/Kingdaniel4747/musicload/releases
+
+---
+
+## Musicload Home Assistant app changelog
+
 ## 1.7
 
 - Using Musicload version number

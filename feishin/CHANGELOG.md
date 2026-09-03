@@ -1,8 +1,10 @@
 # Changelog
 
+For the Feishin changelog, go to: https://github.com/jeffvli/feishin/releases
+
 ---
 
-## Feishin
+## Feishin Home Assistant app changelog
 
 ### [1.15.1] - 2026-07-24
 - Bumped to 1.15.1
