@@ -1,34 +1,14 @@
-# Audiobookshelf
+# Subwave Add-on
 
-Self-hosted audiobook and podcast server, packaged as a Home Assistant addon
-by wrapping the official [ghcr.io/advplyr/audiobookshelf](https://github.com/advplyr/audiobookshelf) image.
+Home Assistant add-on for [Subwave](https://github.com/perminder-klair/subwave).
 
-## Access
+A personal internet radio station. One Icecast stream, one broadcast. Every listener hears the same thing at the same time. An AI DJ picks the tracks and talks between them: station idents, time checks, the weather, a quick intro for whatever's going out next. You can ask for music in plain language; the DJ works out what you meant and slots it in.
 
-Web UI: 'http://<home-assistant-ip>:9988'
+It's radio, not a playlist. No per-listener shuffle, no skip button, no "up next for you." You tune in and hear whatever is on.
 
-## Media library
+See [DOCS.md](DOCS.md) for setup and configuration.
 
-This addon mounts Home Assistant's built-in '/media' share (read-write) into
-the container. After first login, add a library from inside Audiobookshelf's
-UI and point it at a folder under '/media' (e.g. '/media/audiobooks',
-'/media/podcasts') — create those folders under HA's media source first if
-they don't already exist.
-
-## Options
-
-| Option | Description |
-| --- | --- |
-| 'TZ' | Timezone, e.g. 'Europe/Amsterdam'. Used for scheduled backups. |
-
-## Notes
-
-- Config and metadata (including the SQLite database) persist in the
-  addon's own '/data' volume — don't point it at network storage.
-- Unlike some LinuxServer-style images, the official Audiobookshelf image
-  does not support 'PUID'/'PGID'.
-- Requires a WebSocket-capable reverse proxy if you put this behind NPM —
-  same as the Termix addon in this repo.
+## At a glance
 
 ---
 
@@ -52,7 +32,7 @@ If my work saves you time, a small tip means a lot:
 - 🐈‍⬛ **GitHub Sponsors:** [github.com/sponsors/andreibarburas](https://github.com/sponsors/andreibarburas)
 - ☕ **Buy me a coffee:** [buymeacoffee.com/barburas](https://buymeacoffee.com/barburas)
 - 🌐 **Website:** [barburas.com](https://barburas.com)
-- 🐛 **Issues & feature requests:** [open an issue](/issues)
+- 🐛 **Issues & feature requests:** [open an issue](../../issues)
 
 ## Links
 

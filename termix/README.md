@@ -1,34 +1,12 @@
-# Audiobookshelf
+# Termix Add-on
 
-Self-hosted audiobook and podcast server, packaged as a Home Assistant addon
-by wrapping the official [ghcr.io/advplyr/audiobookshelf](https://github.com/advplyr/audiobookshelf) image.
+Home Assistant add-on for [Termix](https://github.com/Termix-SSH/Termix).
 
-## Access
+Termix is a free, open source, self-hosted platform for managing your servers. It puts SSH terminals, remote desktops (RDP, VNC, Telnet), file transfers, tunnels, Docker, metrics, and automations in one place, on web, desktop, and mobile. It is a self-hosted alternative to Termius that stays free forever.
 
-Web UI: 'http://<home-assistant-ip>:9988'
+See [DOCS.md](DOCS.md) for setup and configuration.
 
-## Media library
-
-This addon mounts Home Assistant's built-in '/media' share (read-write) into
-the container. After first login, add a library from inside Audiobookshelf's
-UI and point it at a folder under '/media' (e.g. '/media/audiobooks',
-'/media/podcasts') — create those folders under HA's media source first if
-they don't already exist.
-
-## Options
-
-| Option | Description |
-| --- | --- |
-| 'TZ' | Timezone, e.g. 'Europe/Amsterdam'. Used for scheduled backups. |
-
-## Notes
-
-- Config and metadata (including the SQLite database) persist in the
-  addon's own '/data' volume — don't point it at network storage.
-- Unlike some LinuxServer-style images, the official Audiobookshelf image
-  does not support 'PUID'/'PGID'.
-- Requires a WebSocket-capable reverse proxy if you put this behind NPM —
-  same as the Termix addon in this repo.
+## At a glance
 
 ---
 
@@ -52,7 +30,7 @@ If my work saves you time, a small tip means a lot:
 - 🐈‍⬛ **GitHub Sponsors:** [github.com/sponsors/andreibarburas](https://github.com/sponsors/andreibarburas)
 - ☕ **Buy me a coffee:** [buymeacoffee.com/barburas](https://buymeacoffee.com/barburas)
 - 🌐 **Website:** [barburas.com](https://barburas.com)
-- 🐛 **Issues & feature requests:** [open an issue](/issues)
+- 🐛 **Issues & feature requests:** [open an issue](../../issues)
 
 ## Links
 
