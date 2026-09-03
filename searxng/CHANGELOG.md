@@ -1,3 +1,6 @@
+## 2026.09.03
+- Bumped SearXNG to 2026.9.2
+
 ## 2026.08.26
 - Bumped SearXNG to 2026.8.22
 
