@@ -1,6 +1,6 @@
 ---
 name: Homepage
-version: "2.1.2"
+version: "2.2.0"
 slug: homepage
 description: A highly customizable startpage / application dashboard (gethomepage.dev)
 url: "https://github.com/andreibarburas/hassio-apps"
