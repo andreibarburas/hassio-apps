@@ -1,5 +1,8 @@
 # Changelog
 
+### [0.20.0] - 2026-09-03
+- Bumped to Solidtime 0.20.0
+
 ### [0.19.1] - 2026-08-11
 - Bumped to Solidtime 0.19.1
 - Added 'TRUSTED_HOSTS' configuration option (introduced in Solidtime 0.19.0)
