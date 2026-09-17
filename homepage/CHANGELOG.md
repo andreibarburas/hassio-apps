@@ -6,6 +6,9 @@ For the Homepage changelog, go to: https://github.com/gethomepage/homepage/relea
 
 ## Homepage Home Assistant app changelog
 
+### [2.4.0] - 2026-09-17
+- Bumped to Homepage 2.4.0
+
 ### [2.3.0] - 2026-09-11
 - Bumped to Homepage 2.3.0
 
