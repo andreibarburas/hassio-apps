@@ -6,6 +6,14 @@ For the Subwave changelog, go to: https://github.com/perminder-klair/subwave/rel
 
 ## Subwave Home Assistant app changelog
 
+### [1.20.0] - 2026-10-09
+- Bumped to Subwave v1.20.0
+- Fixed: the 1.19 bump used a two-part image tag (`...subwave-aio:1.19`)
+  instead of the full three-part release tag, and the Dockerfile's
+  `ARG BUILD_FROM` default / `LABEL io.hass.version` were left stale at
+  1.10.0 since the very first release — both are now kept in lockstep with
+  `config.yaml` on every bump
+
 ### [1.19] - 2026-10-08
 - Bumped to Subwave v1.19
 
