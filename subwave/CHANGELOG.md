@@ -6,6 +6,9 @@ For the Subwave changelog, go to: https://github.com/perminder-klair/subwave/rel
 
 ## Subwave Home Assistant app changelog
 
+### [1.21] - 2026-10-11
+- Bumped to Subwave v1.21
+
 ### [1.20.0] - 2026-10-09
 - Bumped to Subwave v1.20.0
 - Fixed: the 1.19 bump used a two-part image tag (`...subwave-aio:1.19`)

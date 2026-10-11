@@ -1,7 +1,7 @@
-ARG BUILD_FROM=ghcr.io/perminder-klair/subwave-aio:1.20.0
+ARG BUILD_FROM=ghcr.io/perminder-klair/subwave-aio:1.21.0
 FROM ${BUILD_FROM}
 
-LABEL io.hass.version="1.20.0"
+LABEL io.hass.version="1.21.0"
 
 USER root
 
