@@ -1,6 +1,6 @@
 ---
 name: Termix
-version: '2.9.2'
+version: '26.10.0'
 slug: termix
 description: A self-hosted web-based server management platform with SSH terminal, tunneling, and file editing.
 url: 'https://github.com/LukeGus/Termix'
