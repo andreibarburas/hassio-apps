@@ -1,4 +1,4 @@
-FROM ghcr.io/gethomepage/homepage:v2.5.0
+FROM ghcr.io/gethomepage/homepage:latest
 
 # jq is used by run.sh to read Home Assistant's /data/options.json,
 # since bashio isn't available inside this wrapped third-party image.
