@@ -6,6 +6,9 @@ For the Musicload changelog, go to: https://github.com/Kingdaniel4747/musicload/
 
 ## Musicload Home Assistant app changelog
 
+## 1.8
+- Bumped Musicload to 1.8
+
 ## 1.7
 
 - Using Musicload version number

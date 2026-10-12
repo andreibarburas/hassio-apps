@@ -1,4 +1,4 @@
-FROM ghcr.io/kingdaniel4747/musicload:145b77bac681c49f45f3ae0ea2db01f45221cab8
+FROM ghcr.io/kingdaniel4747/musicload:latest
 
 # Plain bash + jq only: this wraps a third-party image, so bashio isn't available.
 RUN apt-get update && \
