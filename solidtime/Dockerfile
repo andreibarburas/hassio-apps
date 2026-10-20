@@ -16,12 +16,14 @@ RUN apt-get update && \
 RUN mkdir -p /var/log/supervisor /var/run/postgresql && \
     chown postgres:postgres /var/run/postgresql
 
-# Copy the image's own supervisord confs into place
-# Exclude the bare supervisord.conf (main config) from conf.d — it goes to /etc/supervisord.conf only
+# Copy the image's own supervisord confs into place, then ensure the bare
+# supervisord.conf (main config) is NOT in conf.d — supervisord treats every
+# file there as a program-group conf and crashes if it finds the [supervisord] section
 RUN for f in /var/www/html/docker/prod/deployment/supervisord.*.conf; do \
         cp "$f" /etc/supervisor/conf.d/; \
     done && \
-    cp /var/www/html/docker/prod/deployment/supervisord.conf /etc/supervisord.conf
+    cp /var/www/html/docker/prod/deployment/supervisord.conf /etc/supervisord.conf && \
+    rm -f /etc/supervisor/conf.d/supervisord.conf
 
 # Replace /dev/stdout and /dev/stderr with actual log files in ALL supervisord confs
 # to avoid EACCES when supervisord spawns processes (covers root conf + all includes)
