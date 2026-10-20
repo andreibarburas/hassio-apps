@@ -17,7 +17,8 @@ RUN mkdir -p /var/log/supervisor /var/run/postgresql && \
     chown postgres:postgres /var/run/postgresql
 
 # Copy the image's own supervisord confs into place
-RUN for f in /var/www/html/docker/prod/deployment/supervisord*.conf; do \
+# Exclude the bare supervisord.conf (main config) from conf.d — it goes to /etc/supervisord.conf only
+RUN for f in /var/www/html/docker/prod/deployment/supervisord.*.conf; do \
         cp "$f" /etc/supervisor/conf.d/; \
     done && \
     cp /var/www/html/docker/prod/deployment/supervisord.conf /etc/supervisord.conf
