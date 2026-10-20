@@ -6,6 +6,9 @@ For the Solidtime changelog, go to: https://github.com/solidtime-io/solidtime/re
 
 ## Solidtime Home Assistant app changelog
 
+### [0.22.0] - 2026-10-20
+- Bumped to Solidtime 0.22.0
+
 ### [0.21.0] - 2026-09-24
 - Bumped to Solidtime 0.21.0
 
