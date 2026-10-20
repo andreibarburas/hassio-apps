@@ -36,9 +36,11 @@ RUN find /etc/supervisor /etc/supervisord.conf -name "*.conf" 2>/dev/null | xarg
         -e 's|stderr_logfile_maxbytes = 0|stderr_logfile_maxbytes = 10MB|g' \
         {} 2>/dev/null || true
 
-# Strip [include] stanzas from all conf.d files — they cause duplicate program
-# definitions and unresolved %(ENV_*)s expansions that crash supervisord dispatchers
-RUN sed -i '/^\[include\]/,/^files = /d' /etc/supervisor/conf.d/*.conf
+# Patch log paths in supervisord.services.conf — it uses %(ENV_ROOT)s/storage/logs/
+# which may not be writable at supervisord start; redirect to /var/log/supervisor/
+RUN sed -i \
+        -e 's|%(ENV_ROOT)s/storage/logs/[^=]*\.log|/var/log/supervisor/app.log|g' \
+        /etc/supervisor/conf.d/supervisord.services.conf 2>/dev/null || true
 
 RUN chmod +x /var/www/html/docker/prod/deployment/start-container
 
