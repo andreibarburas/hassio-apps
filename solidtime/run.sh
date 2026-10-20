@@ -175,5 +175,33 @@ printf 'PASSPORT_PRIVATE_KEY="%s"\n' "${PASSPORT_PRIVATE_KEY}" >> /var/www/html/
 printf 'PASSPORT_PUBLIC_KEY="%s"\n' "${PASSPORT_PUBLIC_KEY}" >> /var/www/html/.env
 
 log "Starting Solidtime via start-container (http mode)..."
+
+# Overwrite the frankenphp supervisord conf with patched log paths at runtime.
+# Build-time sed is unreliable due to HA image layer caching.
+cat > /etc/supervisor/conf.d/supervisord.frankenphp.conf << 'SUPEOF'
+[program:octane]
+process_name = %(program_name)s_%(process_num)s
+command = php %(ENV_ROOT)s/artisan octane:frankenphp --host=0.0.0.0 --port=8000 --admin-host=0.0.0.0 --admin-port=2019 --log-level=WARN --caddyfile=%(ENV_ROOT)s/docker/prod/deployment/octane/FrankenPHP/Caddyfile
+user = %(ENV_USER)s
+priority = 1
+autostart = true
+autorestart = true
+stopwaitsecs = 30
+stopasgroup = true
+killasgroup = true
+environment = LARAVEL_OCTANE = "1"
+stdout_logfile = /var/log/supervisor/app.log
+stdout_logfile_maxbytes = 10MB
+stderr_logfile = /var/log/supervisor/app.log
+stderr_logfile_maxbytes = 10MB
+
+[include]
+files = /etc/supervisord.conf /etc/supervisor/conf.d/supervisord.services.conf
+SUPEOF
+
+# Patch supervisord.services.conf log paths (uses %(ENV_ROOT)s/storage/logs/*.log)
+sed -i 's|%(ENV_ROOT)s/storage/logs/[a-z.-]*log|/var/log/supervisor/app.log|g' \
+    /etc/supervisor/conf.d/supervisord.services.conf 2>/dev/null || true
+
 export CONTAINER_MODE="http"
 exec /var/www/html/docker/prod/deployment/start-container
