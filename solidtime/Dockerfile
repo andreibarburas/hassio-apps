@@ -7,7 +7,7 @@ USER root
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        postgresql-15 \
+        postgresql-17 \
         gosu \
         curl \
         jq \

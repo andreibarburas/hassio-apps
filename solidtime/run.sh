@@ -34,7 +34,7 @@ chown -R postgres:postgres /data
 
 if [ ! -d "${PGDATA}/global" ]; then
     log "Initialising PostgreSQL database..."
-    gosu postgres /usr/lib/postgresql/15/bin/initdb \
+    gosu postgres /usr/lib/postgresql/17/bin/initdb \
         --pgdata="${PGDATA}" \
         --auth-local=trust \
         --auth-host=md5 \
@@ -43,7 +43,7 @@ if [ ! -d "${PGDATA}/global" ]; then
 fi
 
 log "Starting PostgreSQL to initialise schema..."
-gosu postgres /usr/lib/postgresql/15/bin/pg_ctl \
+gosu postgres /usr/lib/postgresql/17/bin/pg_ctl \
     -D "${PGDATA}" \
     -l /var/log/supervisor/postgresql-init.log \
     -w start
@@ -62,7 +62,7 @@ WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = '${DB_DATABASE}')
 \gexec
 SQL
 
-gosu postgres /usr/lib/postgresql/15/bin/pg_ctl -D "${PGDATA}" -w stop
+gosu postgres /usr/lib/postgresql/17/bin/pg_ctl -D "${PGDATA}" -w stop
 
 # ── Export all env vars for the solidtime app ─────────────────────────────────
 log "Setting solidtime environment..."
@@ -112,7 +112,7 @@ fi
 
 # ── Start postgres and keep it running before handing off ────────────────────
 log "Starting PostgreSQL..."
-gosu postgres /usr/lib/postgresql/15/bin/pg_ctl -D "${PGDATA}" -w start
+gosu postgres /usr/lib/postgresql/17/bin/pg_ctl -D "${PGDATA}" -w start
 
 # Wait until postgres is accepting connections
 until gosu postgres psql -c "select 1" > /dev/null 2>&1; do
