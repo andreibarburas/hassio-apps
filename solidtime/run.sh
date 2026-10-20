@@ -43,9 +43,11 @@ if [ ! -d "${PGDATA}/global" ]; then
 fi
 
 log "Starting PostgreSQL to initialise schema..."
+# Remove stale lock file from a previous crashed run
+rm -f "${PGDATA}/postmaster.pid"
 gosu postgres /usr/lib/postgresql/17/bin/pg_ctl \
     -D "${PGDATA}" \
-    -l /var/log/supervisor/postgresql-init.log \
+    -l /data/postgresql-init.log \
     -w start
 
 gosu postgres psql -v ON_ERROR_STOP=0 <<SQL
@@ -112,6 +114,7 @@ fi
 
 # ── Start postgres and keep it running before handing off ────────────────────
 log "Starting PostgreSQL..."
+rm -f "${PGDATA}/postmaster.pid"
 gosu postgres /usr/lib/postgresql/17/bin/pg_ctl -D "${PGDATA}" -w start
 
 # Wait until postgres is accepting connections
