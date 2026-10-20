@@ -22,14 +22,16 @@ RUN for f in /var/www/html/docker/prod/deployment/supervisord*.conf; do \
     done && \
     cp /var/www/html/docker/prod/deployment/supervisord.conf /etc/supervisord.conf
 
-# Replace /dev/stdout and /dev/stderr with actual log files in all confs
-# to avoid EACCES when supervisord spawns processes
-RUN sed -i \
+# Replace /dev/stdout and /dev/stderr with actual log files in ALL supervisord confs
+# to avoid EACCES when supervisord spawns processes (covers root conf + all includes)
+RUN find /etc/supervisor /etc/supervisord.conf -name "*.conf" 2>/dev/null | xargs -I{} sed -i \
         -e 's|stdout_logfile = /dev/stdout|stdout_logfile = /var/log/supervisor/app.log|g' \
+        -e 's|stdout_logfile=/dev/stdout|stdout_logfile=/var/log/supervisor/app.log|g' \
         -e 's|stderr_logfile = /dev/stderr|stderr_logfile = /var/log/supervisor/app.log|g' \
+        -e 's|stderr_logfile=/dev/stderr|stderr_logfile=/var/log/supervisor/app.log|g' \
         -e 's|stdout_logfile_maxbytes = 0|stdout_logfile_maxbytes = 10MB|g' \
         -e 's|stderr_logfile_maxbytes = 0|stderr_logfile_maxbytes = 10MB|g' \
-        /etc/supervisor/conf.d/*.conf
+        {} 2>/dev/null || true
 
 RUN chmod +x /var/www/html/docker/prod/deployment/start-container
 
