@@ -28,9 +28,22 @@ TRUSTED_HOSTS=$(jq -r '.trusted_hosts' "${CONFIG_PATH}")
 
 # ── PostgreSQL setup ──────────────────────────────────────────────────────────
 PGDATA=/data/postgresql
+PG_VERSION=17
 
 mkdir -p "${PGDATA}"
 chown -R postgres:postgres /data
+
+# Detect major version mismatch (e.g. leftover PG15 data dir) and wipe it
+if [ -f "${PGDATA}/PG_VERSION" ]; then
+    EXISTING_VER=$(cat "${PGDATA}/PG_VERSION")
+    if [ "${EXISTING_VER}" != "${PG_VERSION}" ]; then
+        log "WARNING: Existing PostgreSQL data is version ${EXISTING_VER}, but this addon uses ${PG_VERSION}."
+        log "Removing old data directory and starting fresh. Make sure you imported a Solidtime export first!"
+        rm -rf "${PGDATA}"
+        mkdir -p "${PGDATA}"
+        chown postgres:postgres "${PGDATA}"
+    fi
+fi
 
 if [ ! -d "${PGDATA}/global" ]; then
     log "Initialising PostgreSQL database..."

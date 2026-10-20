@@ -4,6 +4,8 @@ For the Solidtime changelog, go to: https://github.com/solidtime-io/solidtime/re
 
 ---
 
+## Due to the upgrade from PostgreSQL from 15 to 17, please backup your data before upgrading!
+
 ## Solidtime Home Assistant app changelog
 
 ### [0.22.0] - 2026-10-20
