@@ -7,7 +7,7 @@ USER root
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        postgresql-15 \
+        postgresql-17 \
         gosu \
         curl \
         jq \
@@ -16,20 +16,31 @@ RUN apt-get update && \
 RUN mkdir -p /var/log/supervisor /var/run/postgresql && \
     chown postgres:postgres /var/run/postgresql
 
-# Copy the image's own supervisord confs into place
-RUN for f in /var/www/html/docker/prod/deployment/supervisord*.conf; do \
+# Copy the image's own supervisord confs into place, then ensure the bare
+# supervisord.conf (main config) is NOT in conf.d — supervisord treats every
+# file there as a program-group conf and crashes if it finds the [supervisord] section
+RUN for f in /var/www/html/docker/prod/deployment/supervisord.*.conf; do \
         cp "$f" /etc/supervisor/conf.d/; \
     done && \
-    cp /var/www/html/docker/prod/deployment/supervisord.conf /etc/supervisord.conf
+    cp /var/www/html/docker/prod/deployment/supervisord.conf /etc/supervisord.conf && \
+    rm -f /etc/supervisor/conf.d/supervisord.conf
 
-# Replace /dev/stdout and /dev/stderr with actual log files in all confs
-# to avoid EACCES when supervisord spawns processes
-RUN sed -i \
+# Replace /dev/stdout and /dev/stderr with actual log files in ALL supervisord confs
+# to avoid EACCES when supervisord spawns processes (covers root conf + all includes)
+RUN find /etc/supervisor /etc/supervisord.conf -name "*.conf" 2>/dev/null | xargs -I{} sed -i \
         -e 's|stdout_logfile = /dev/stdout|stdout_logfile = /var/log/supervisor/app.log|g' \
+        -e 's|stdout_logfile=/dev/stdout|stdout_logfile=/var/log/supervisor/app.log|g' \
         -e 's|stderr_logfile = /dev/stderr|stderr_logfile = /var/log/supervisor/app.log|g' \
+        -e 's|stderr_logfile=/dev/stderr|stderr_logfile=/var/log/supervisor/app.log|g' \
         -e 's|stdout_logfile_maxbytes = 0|stdout_logfile_maxbytes = 10MB|g' \
         -e 's|stderr_logfile_maxbytes = 0|stderr_logfile_maxbytes = 10MB|g' \
-        /etc/supervisor/conf.d/*.conf
+        {} 2>/dev/null || true
+
+# Patch log paths in supervisord.services.conf — it uses %(ENV_ROOT)s/storage/logs/
+# which may not be writable at supervisord start; redirect to /var/log/supervisor/
+RUN sed -i \
+        -e 's|%(ENV_ROOT)s/storage/logs/[^=]*\.log|/var/log/supervisor/app.log|g' \
+        /etc/supervisor/conf.d/supervisord.services.conf 2>/dev/null || true
 
 RUN chmod +x /var/www/html/docker/prod/deployment/start-container
 

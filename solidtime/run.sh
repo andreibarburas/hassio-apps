@@ -28,13 +28,26 @@ TRUSTED_HOSTS=$(jq -r '.trusted_hosts' "${CONFIG_PATH}")
 
 # ── PostgreSQL setup ──────────────────────────────────────────────────────────
 PGDATA=/data/postgresql
+PG_VERSION=17
 
 mkdir -p "${PGDATA}"
 chown -R postgres:postgres /data
 
+# Detect major version mismatch (e.g. leftover PG15 data dir) and wipe it
+if [ -f "${PGDATA}/PG_VERSION" ]; then
+    EXISTING_VER=$(cat "${PGDATA}/PG_VERSION")
+    if [ "${EXISTING_VER}" != "${PG_VERSION}" ]; then
+        log "WARNING: Existing PostgreSQL data is version ${EXISTING_VER}, but this addon uses ${PG_VERSION}."
+        log "Removing old data directory and starting fresh. Make sure you imported a Solidtime export first!"
+        rm -rf "${PGDATA}"
+        mkdir -p "${PGDATA}"
+        chown postgres:postgres "${PGDATA}"
+    fi
+fi
+
 if [ ! -d "${PGDATA}/global" ]; then
     log "Initialising PostgreSQL database..."
-    gosu postgres /usr/lib/postgresql/15/bin/initdb \
+    gosu postgres /usr/lib/postgresql/17/bin/initdb \
         --pgdata="${PGDATA}" \
         --auth-local=trust \
         --auth-host=md5 \
@@ -43,9 +56,11 @@ if [ ! -d "${PGDATA}/global" ]; then
 fi
 
 log "Starting PostgreSQL to initialise schema..."
-gosu postgres /usr/lib/postgresql/15/bin/pg_ctl \
+# Remove stale lock file from a previous crashed run
+rm -f "${PGDATA}/postmaster.pid"
+gosu postgres /usr/lib/postgresql/17/bin/pg_ctl \
     -D "${PGDATA}" \
-    -l /var/log/supervisor/postgresql-init.log \
+    -l /data/postgresql-init.log \
     -w start
 
 gosu postgres psql -v ON_ERROR_STOP=0 <<SQL
@@ -62,7 +77,7 @@ WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = '${DB_DATABASE}')
 \gexec
 SQL
 
-gosu postgres /usr/lib/postgresql/15/bin/pg_ctl -D "${PGDATA}" -w stop
+gosu postgres /usr/lib/postgresql/17/bin/pg_ctl -D "${PGDATA}" -w stop
 
 # ── Export all env vars for the solidtime app ─────────────────────────────────
 log "Setting solidtime environment..."
@@ -112,7 +127,8 @@ fi
 
 # ── Start postgres and keep it running before handing off ────────────────────
 log "Starting PostgreSQL..."
-gosu postgres /usr/lib/postgresql/15/bin/pg_ctl -D "${PGDATA}" -w start
+rm -f "${PGDATA}/postmaster.pid"
+gosu postgres /usr/lib/postgresql/17/bin/pg_ctl -D "${PGDATA}" -w start
 
 # Wait until postgres is accepting connections
 until gosu postgres psql -c "select 1" > /dev/null 2>&1; do
@@ -159,5 +175,47 @@ printf 'PASSPORT_PRIVATE_KEY="%s"\n' "${PASSPORT_PRIVATE_KEY}" >> /var/www/html/
 printf 'PASSPORT_PUBLIC_KEY="%s"\n' "${PASSPORT_PUBLIC_KEY}" >> /var/www/html/.env
 
 log "Starting Solidtime via start-container (http mode)..."
+
+# Ensure the supervisor log dir and file are writable by user 1000 (www-data)
+mkdir -p /var/log/supervisor
+touch /var/log/supervisor/app.log
+chmod 777 /var/log/supervisor/app.log
+chmod 777 /var/log/supervisor
+
+# Overwrite the frankenphp supervisord conf with patched log paths at runtime.
+# Build-time sed is unreliable due to HA image layer caching.
+cat > /etc/supervisor/conf.d/supervisord.frankenphp.conf << 'SUPEOF'
+[program:octane]
+process_name = %(program_name)s_%(process_num)s
+command = php %(ENV_ROOT)s/artisan octane:frankenphp --host=0.0.0.0 --port=8000 --admin-host=0.0.0.0 --admin-port=2019 --log-level=WARN --caddyfile=%(ENV_ROOT)s/docker/prod/deployment/octane/FrankenPHP/Caddyfile
+user = %(ENV_USER)s
+priority = 1
+autostart = true
+autorestart = true
+stopwaitsecs = 30
+stopasgroup = true
+killasgroup = true
+environment = LARAVEL_OCTANE = "1"
+stdout_logfile = /var/log/supervisor/app.log
+stdout_logfile_maxbytes = 10MB
+stderr_logfile = /var/log/supervisor/app.log
+stderr_logfile_maxbytes = 10MB
+
+[include]
+files = /etc/supervisord.conf /etc/supervisor/conf.d/supervisord.services.conf
+SUPEOF
+
+# Patch supervisord.services.conf log paths (uses %(ENV_ROOT)s/storage/logs/*.log)
+sed -i 's|%(ENV_ROOT)s/storage/logs/[a-z.-]*log|/var/log/supervisor/app.log|g' \
+    /etc/supervisor/conf.d/supervisord.services.conf 2>/dev/null || true
+
+# Ensure Passport personal access client exists (needed for API tokens)
+# Runs migrate first in case this is a fresh install and tables don't exist yet
+gosu 1000 php /var/www/html/artisan migrate --isolated --force --quiet 2>/dev/null || true
+if ! gosu 1000 php /var/www/html/artisan passport:client --list 2>/dev/null | grep -q "personal"; then
+    log "Creating Passport personal access client..."
+    gosu 1000 php /var/www/html/artisan passport:client --personal --name="API" --no-interaction
+fi
+
 export CONTAINER_MODE="http"
 exec /var/www/html/docker/prod/deployment/start-container

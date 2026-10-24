@@ -4,6 +4,9 @@ For the Solidtime changelog, go to: https://github.com/solidtime-io/solidtime/re
 
 ---
 
+### Please backup your data before upgrading due to the upgrade from PostgreSQL 15 to 17.
+
+
 ## Solidtime Home Assistant app changelog
 
 ### [0.22.1] - 2026-10-24
@@ -11,6 +14,10 @@ For the Solidtime changelog, go to: https://github.com/solidtime-io/solidtime/re
 
 ### [0.22.0] - 2026-10-20
 - Bumped to Solidtime 0.22.0
+- Upgraded bundled PostgreSQL from 15 to 17 (Solidtime base image moved to Debian Trixie)
+  **Note:** If you have an existing installation, the `/data/postgresql` directory must be
+  re-initialised. Back up your data first with a Solidtime export, uninstall the addon
+  (clear data), reinstall, then re-import.
 
 ### [0.21.0] - 2026-09-24
 - Bumped to Solidtime 0.21.0
