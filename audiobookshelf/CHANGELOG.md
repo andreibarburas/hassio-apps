@@ -6,6 +6,9 @@ For the Audiobookshelf changelog, go to: https://github.com/advplyr/audiobookshe
 
 ## Audiobookshelf Home Assistant app changelog
 
+### [2.37.2] - 2026-10-24
+- Bumped to 2.37.2
+
 ### [2.37.1] - 2026-10-02
 - Bumped to 2.37.1
 
