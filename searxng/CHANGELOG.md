@@ -6,6 +6,9 @@ For the SearXNG changelog, go to: https://github.com/searxng/searxng/commits/mas
 
 ## SearXNG Home Assistant app changelog
 
+## 2026.11.06
+- Bumped SearXNG to 2026.11.5
+
 ## 2026.10.31
 - Bumped SearXNG to 2026.10.30
 
