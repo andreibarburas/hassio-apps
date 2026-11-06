@@ -6,6 +6,9 @@ For the Termix changelog, go to: https://github.com/Termix-SSH/Termix/releases
 
 ## Termix Home Assistant app changelog
 
+### [26.11.0] - 2026-11-06
+- Bumped to Termix 26.11.0
+
 ### [26.10.6] - 2026-10-31
 - Bumped to Termix 26.10.6
 
